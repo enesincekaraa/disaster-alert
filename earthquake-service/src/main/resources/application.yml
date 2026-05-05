@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: earthquake-service
+  threads:
+    virtual:
+      enabled: true
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+server:
+  port: 8082
+
+# Kandilli API
+kandilli:
+  url: http://www.koeri.boun.edu.tr/scripts/lasteq.asp
+  poll-interval: 60000   # Her 60 saniyede bir kontrol et
+  min-magnitude: 3.0     # 3.0 ve üzeri depremleri bildir
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

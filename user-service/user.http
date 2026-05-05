@@ -1,0 +1,28 @@
+### Kullanıcı oluştur — İstanbul
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "name": "Ahmet Yılmaz",
+  "email": "ahmet@test.com",
+  "phoneNumber": "+905XXXXXXXXX",
+  "city": "Istanbul",
+  "latitude": 41.0082,
+  "longitude": 28.9784
+}
+
+### Ankara'da kullanıcı
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "name": "Mehmet Demir",
+  "email": "mehmet@test.com",
+  "phoneNumber": "+905XXXXXXXXX",
+  "city": "Ankara",
+  "latitude": 39.9334,
+  "longitude": 32.8597
+}
+
+### İstanbul'dan 200km yarıçapındaki kullanıcılar
+GET http://localhost:8081/api/users/radius?latitude=41.0082&longitude=28.9784&radiusKm=200
