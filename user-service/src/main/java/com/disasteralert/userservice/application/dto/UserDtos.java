@@ -40,6 +40,7 @@ public class UserDtos {
             Double longitude,
             boolean earthquakeAlertsEnabled,
             boolean weatherAlertsEnabled,
+            String fcmToken,
             LocalDateTime createdAt
     ) {}
 }

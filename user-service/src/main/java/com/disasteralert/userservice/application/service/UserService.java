@@ -108,6 +108,7 @@ public class UserService {
                 user.getLongitude(),
                 user.isEarthquakeAlertsEnabled(),
                 user.isWeatherAlertsEnabled(),
+                user.getFcmToken(),
                 user.getCreatedAt()
         );
     }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FCM Token Üretici</title>
+</head>
+<body>
+<h2>FCM Token Al</h2>
+<button onclick="getToken()">Token Al</button>
+<p id="token" style="word-break: break-all; max-width: 800px;"></p>
+
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-messaging-compat.js"></script>
+
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBrJvtQjoIc6YCPxtQlDy_BpgAORvsLJLY",
+        authDomain: "cloud-messaging-5dfae.firebaseapp.com",
+        projectId: "cloud-messaging-5dfae",
+        storageBucket: "cloud-messaging-5dfae.firebasestorage.app",
+        messagingSenderId: "1035025005698",
+        appId: "1:1035025005698:web:92163d430a88d40dde889b"
+    });
+
+    async function getToken() {
+        try {
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+                document.getElementById("token").innerText = "İzin reddedildi!";
+                return;
+            }
+
+            const token = await firebase.messaging().getToken({
+                vapidKey: "BAZO_i7Q4hI6r70EtKrmq6SqISr7ncnQfpsSBCW1DgNN4gaTw_K5c9W7ijRGyaijulbNAvULakOnoyBZhGjIKUo"
+            });
+
+            document.getElementById("token").innerText = token;
+            console.log("Token:", token);
+
+        } catch (err) {
+            document.getElementById("token").innerText = "Hata: " + err.message;
+            console.error(err);
+        }
+    }
+</script>
+</body>
+</html>

@@ -24,5 +24,42 @@ Content-Type: application/json
   "longitude": 32.8597
 }
 
+### Kullanıcı oluştur — İzmir
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+"name": "Test Kullanıcı",
+"email": "test@izmir.com",
+"phoneNumber": "+905XXXXXXXXX",
+"city": "Izmir",
+"latitude": 38.4192,
+"longitude": 27.1287
+}
+
+
+### Yeni kullanıcı oluştur — kendi numaran
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "name": "Enes İncekara",
+  "email": "enes2@test.com",
+  "phoneNumber": "+905426860509",
+  "city": "Izmir",
+  "latitude": 38.4192,
+  "longitude": 27.1287
+}
+### FCM token güncelleme — Enes İncekara
+PATCH http://localhost:8081/api/users/84f97d36-56da-479b-b3a3-f1e013016946/fcm-token
+Content-Type: application/json
+
+{
+"fcmToken": "dGOlzRallTivJnLI4OHo7w:APA91bFekO-MgBiSuNUBM6YXu4pgR_-l5fYtC779fNzZQ-ewY8-mzAy4jRlQ5F24qM_bpCBEgQBlZOsdjQyUZ1OPOda3Xfs6DIAC5fvYBplUunR3A7OCvyE"
+}
 ### İstanbul'dan 200km yarıçapındaki kullanıcılar
 GET http://localhost:8081/api/users/radius?latitude=41.0082&longitude=28.9784&radiusKm=200
+
+
+### Fcm token kontrolü — Enes İncekara
+GET http://localhost:8081/api/users/84f97d36-56da-479b-b3a3-f1e013016946
