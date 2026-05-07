@@ -36,5 +36,19 @@ Content-Type: application/json
 "latitude": 38.4192,
 "longitude": 27.1287
 }
+
+
+### Yeni kullanıcı oluştur — kendi numaran
+POST http://localhost:8081/api/users
+Content-Type: application/json
+
+{
+  "name": "Enes İncekara",
+  "email": "enes2@test.com",
+  "phoneNumber": "+905426860509",
+  "city": "Izmir",
+  "latitude": 38.4192,
+  "longitude": 27.1287
+}
 ### İstanbul'dan 200km yarıçapındaki kullanıcılar
 GET http://localhost:8081/api/users/radius?latitude=41.0082&longitude=28.9784&radiusKm=200

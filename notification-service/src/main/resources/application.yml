@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: notification-service
+  threads:
+    virtual:
+      enabled: true
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    consumer:
+      group-id: notification-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.disasteralert.notificationservice.domain.event.EarthquakeAlertEvent
+
+server:
+  port: 8084
+
+# Twilio
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID}
+  auth-token: ${TWILIO_AUTH_TOKEN}
+  phone-number: ${TWILIO_PHONE_NUMBER}
+
+# Firebase
+firebase:
+  service-account-path: classpath:firebase/firebase-service-account.json
+
+
+services:
+  user-url: http://localhost:8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
