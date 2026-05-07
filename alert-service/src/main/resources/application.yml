@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: alert-service
+  threads:
+    virtual:
+      enabled: true
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: alert-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.disasteralert.alertservice.domain.event.EarthquakeDetectedEvent
+
+server:
+  port: 8083
+
+services:
+  user-url: http://localhost:8081
+
+# Deprem ?iddeti e?ikleri
+alert:
+  radius:
+    below-3: 50
+    between-3-4: 100
+    between-4-5: 200
+    between-5-6: 350
+    above-6: 500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
