@@ -36,8 +36,11 @@ public class NotificationOrchestrator {
             log.warn("Kullanıcı bulunamadı: {}", userId);
             return;
         }
-        log.info("📬 Bildirim gönderiliyor: {} ({})",
-                user.name(), user.city());
+        log.info("📬 Bildirim gönderiliyor: {} ({}) | FCM: {}",
+                user.name(), user.city(),
+                user.fcmToken() != null ? "var" : "YOK");
+
+
 
         String smsText = smsService.buildEarthquakeMessage(
                 alert.location(),
